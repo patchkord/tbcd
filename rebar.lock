@@ -1,0 +1,11 @@
+{"1.2.0",
+[{<<"argparse">>,{pkg,<<"argparse">>,<<"1.2.4">>},1},
+ {<<"erlperf">>,{pkg,<<"erlperf">>,<<"2.2.0">>},0}]}.
+[
+{pkg_hash,[
+ {<<"argparse">>, <<"A31E7C5D9F8814AFCD9B42C1B98C21DA6F851F93F2C8C00C107F6201668A0A7D">>},
+ {<<"erlperf">>, <<"9841D71F0AA0EE344BA3FBA919563362F7A64A96CC61C4E38F1A28E941162A4C">>}]},
+{pkg_hash_ext,[
+ {<<"argparse">>, <<"AC6FDB7183EA20ADEB7EB66E34B21F2E8C4C6925913EE0C0765D339D97009FFE">>},
+ {<<"erlperf">>, <<"B627CA998B07F78FBB0B7DA17C0537AE87730C520E1961C3633F9496B3729973">>}]}
+].
