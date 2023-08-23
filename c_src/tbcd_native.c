@@ -36,7 +36,9 @@ mk_error(ErlNifEnv* env, const char* mesg)
 static ERL_NIF_TERM
 decode(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
-  char ascii[64] = { 0 };
+  char buffer[64] = {0};
+  char* pbuffer = &buffer[0];
+  ERL_NIF_TERM term;
 
   // Check that the arity of the function is correct.
   if (argc != 1) {
@@ -48,17 +50,32 @@ decode(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
     return mk_atom(env, "not_binary");
   }
 
-  if (bin.size * 2 >  sizeof(ascii)) {
-    return mk_atom(env, "binary_to_long");
+  size_t len = sizeof(char) * (bin.size * 2);
+
+  if (len > sizeof(buffer)) {
+    pbuffer = enif_alloc(len + 1);
+
+    if (!pbuffer)
+      return mk_error(env, "nif_alloc");
+
+    pbuffer[len] = 0;
   }
 
-  for (size_t i = 0; i < bin.size; i++) {
+  /* printf("buf.len: %zu\r\n", len); */
+  /* printf("bin.size: %zu\r\n", bin.size); */
+
+  for (size_t i = 0; i < bin.size; ++i){
     size_t pos = bin.size - i - 1; /* reversed position */
-    ascii[2 * i] = tbcd_to_ascii[bin.data[pos] & 0x0f];
-    ascii[2 * i + 1] = tbcd_to_ascii[(bin.data[pos] & 0xf0) >> 4];
+    pbuffer[2 * i] = tbcd_to_ascii[bin.data[pos] & 0x0f];
+    pbuffer[2 * i + 1] = tbcd_to_ascii[(bin.data[pos] & 0xf0) >> 4];
   }
 
-  return enif_make_string(env, ascii, ERL_NIF_LATIN1); // TODO: restrict len
+  term = enif_make_string(env, (const char*)pbuffer, ERL_NIF_LATIN1);
+
+  if (pbuffer != buffer)
+    enif_free(pbuffer);
+
+  return term;
 }
 
 /* Convert the ASCII to TBCD */
@@ -93,7 +110,7 @@ encode(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 
   ERL_NIF_TERM head;
   ErlNifUInt64 current = 0;
-  for (size_t i = 0; enif_get_list_cell(env, list, &head, (ERL_NIF_TERM*) &list); i++) {
+  for (size_t i = 0; enif_get_list_cell(env, list, &head, (ERL_NIF_TERM*) &list); ++i) {
     if (!enif_get_uint64(env, head, &current)) {
       return mk_error(env, "list_element_not_uint64");
     }

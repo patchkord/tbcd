@@ -30,7 +30,7 @@ encode(NumberList, false) when is_list(NumberList) ->
 
 -spec decode(tbcd()) -> binary().
 decode(Bin) ->
-    decode(Bin, true).
+    decode(Bin, false).
 
 -spec decode(tbcd(), tbcd_opts()) -> string().
 decode(Bin, true) ->
