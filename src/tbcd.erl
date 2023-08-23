@@ -12,9 +12,9 @@
 
 -spec encode(number() | string()) -> tbcd().
 encode(Number) when is_integer(Number) ->
-  encode(integer_to_list(Number), false);
+  encode(integer_to_list(Number), true);
 encode(NumberList) when is_list(NumberList) ->
-  encode(NumberList, false).
+  encode(NumberList, true).
 
 -spec encode(string(), tbcd_opts()) -> tbcd().
 encode(Number, Opt) when is_integer(Number) ->
@@ -30,7 +30,7 @@ encode(NumberList, false) when is_list(NumberList) ->
 
 -spec decode(tbcd()) -> binary().
 decode(Bin) ->
-    decode(Bin, false).
+    decode(Bin, true).
 
 -spec decode(tbcd(), tbcd_opts()) -> string().
 decode(Bin, true) ->
