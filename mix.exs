@@ -14,6 +14,8 @@ defmodule Tbcd.MixProject do
       description: description(),
       package: package(),
       erlc_options: erlc_options(),
+      eunit_opts: eunit_options(),
+      preferred_cli_env: [eunit: :test],
       compilers: [:elixir_make] ++ Mix.compilers,
       make_cwd: "c_src",
       deps: deps()
@@ -24,7 +26,7 @@ defmodule Tbcd.MixProject do
     [
       {:src_dirs, ['src']},
       :debug_info,
-      :bin_opt_info,
+      # :bin_opt_info,
       :warn_bif_clash,
       :warn_export_all,
       :warn_obsolete_guard,
@@ -41,13 +43,22 @@ defmodule Tbcd.MixProject do
     ]
   end
 
+  defp eunit_options do
+    [
+      verbose: true,
+      start: false
+    ]
+  end
 
   def application() do
     []
   end
 
   def deps do
-    [{:elixir_make, "~> 0.7", runtime: false}]
+    [
+      {:elixir_make, "~> 0.7", runtime: false},
+      {:mix_eunit, "~> 0.3.0"}
+    ]
   end
 
   defp description() do
