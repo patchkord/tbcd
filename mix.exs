@@ -57,7 +57,8 @@ defmodule Tbcd.MixProject do
   def deps do
     [
       {:elixir_make, "~> 0.7", runtime: false},
-      {:mix_eunit, "~> 0.3.0"}
+      {:mix_eunit, git: "https://github.com/dantswain/mix_eunit.git", branch: "master"}
+      # {:mix_eunit, "~> 0.3.0"}
     ]
   end
 
