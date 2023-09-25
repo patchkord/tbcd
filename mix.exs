@@ -56,9 +56,11 @@ defmodule Tbcd.MixProject do
 
   def deps do
     [
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:elixir_make, "~> 0.7", runtime: false},
-      {:mix_eunit, git: "https://github.com/dantswain/mix_eunit.git", branch: "master"}
       # {:mix_eunit, "~> 0.3.0"}
+      {:mix_eunit, git: "https://github.com/dantswain/mix_eunit.git", branch: "master", only: :test}
+
     ]
   end
 
@@ -68,7 +70,7 @@ defmodule Tbcd.MixProject do
 
   defp package do
     [
-      files: ~w(src lib priv .formatter.exs mix.exs rebar.conf README* readme* LICENSE* license* CHANGELOG* changelog*),
+      files: ~w(src lib mix.exs rebar.config README* LICENSE*),
       maintainers: ["Dmitry Korunov"],
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => @url}
