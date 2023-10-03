@@ -1,7 +1,7 @@
 defmodule Tbcd.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.2.0"
   @url "https://github.com/patchkord/tbcd"
 
   def project() do
@@ -56,8 +56,9 @@ defmodule Tbcd.MixProject do
 
   def deps do
     [
+      {:makeup, "1.0.3"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:elixir_make, "~> 0.7", runtime: false},
+      {:elixir_make, "0.7.5", runtime: false},
       # {:mix_eunit, "~> 0.3.0"}
       {:mix_eunit, git: "https://github.com/dantswain/mix_eunit.git", branch: "master", only: :test}
 
