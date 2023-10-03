@@ -56,7 +56,7 @@ defmodule Tbcd.MixProject do
 
   def deps do
     [
-      {:makeup, "1.0.3"},
+      {:makeup, "1.0.3", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:elixir_make, "0.7.5", runtime: false},
       # {:mix_eunit, "~> 0.3.0"}
@@ -71,7 +71,7 @@ defmodule Tbcd.MixProject do
 
   defp package do
     [
-      files: ~w(src lib mix.exs rebar.config README* LICENSE*),
+      files: ~w(src c_src/tbcd_native.c c_src/Makefile lib mix.exs rebar.config README* LICENSE*),
       maintainers: ["Dmitry Korunov"],
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => @url}
