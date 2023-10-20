@@ -1,13 +1,12 @@
 defmodule Tbcd.MixProject do
   use Mix.Project
 
-  @version "0.2.0"
   @url "https://github.com/patchkord/tbcd"
 
   def project() do
     [
       app: :tbcd,
-      version: @version,
+      version: "0.2.0",
       elixir: "~> 1.0",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
