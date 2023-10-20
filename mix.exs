@@ -16,8 +16,7 @@ defmodule Tbcd.MixProject do
       erlc_options: erlc_options(),
       eunit_opts: eunit_options(),
       preferred_cli_env: [eunit: :test],
-      compilers: [:elixir_make] ++ Mix.compilers,
-      make_cwd: "c_src",
+      compilers: Mix.compilers ++ [:tbcd],
       deps: deps()
     ]
   end
@@ -58,7 +57,6 @@ defmodule Tbcd.MixProject do
     [
       {:makeup, "1.0.3", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:elixir_make, "0.7.5", runtime: false},
       # {:mix_eunit, "~> 0.3.0"}
       {:mix_eunit, git: "https://github.com/dantswain/mix_eunit.git", branch: "master", only: :test}
 
