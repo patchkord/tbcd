@@ -1,13 +1,12 @@
 defmodule Tbcd.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
   @url "https://github.com/patchkord/tbcd"
 
   def project() do
     [
       app: :tbcd,
-      version: @version,
+      version: "0.3.0",
       elixir: "~> 1.0",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
@@ -16,8 +15,7 @@ defmodule Tbcd.MixProject do
       erlc_options: erlc_options(),
       eunit_opts: eunit_options(),
       preferred_cli_env: [eunit: :test],
-      compilers: [:elixir_make] ++ Mix.compilers,
-      make_cwd: "c_src",
+      compilers: Mix.compilers ++ [:tbcd],
       deps: deps()
     ]
   end
@@ -56,8 +54,8 @@ defmodule Tbcd.MixProject do
 
   def deps do
     [
+      {:makeup, "1.0.3", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:elixir_make, "~> 0.7", runtime: false},
       # {:mix_eunit, "~> 0.3.0"}
       {:mix_eunit, git: "https://github.com/dantswain/mix_eunit.git", branch: "master", only: :test}
 
@@ -70,7 +68,7 @@ defmodule Tbcd.MixProject do
 
   defp package do
     [
-      files: ~w(src lib mix.exs rebar.config README* LICENSE*),
+      files: ~w(src c_src/tbcd_native.c c_src/Makefile lib mix.exs rebar.config README* LICENSE*),
       maintainers: ["Dmitry Korunov"],
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => @url}
