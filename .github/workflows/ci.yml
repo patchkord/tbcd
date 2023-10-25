@@ -32,4 +32,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mix-
       - run: mix deps.get
+      - run: mix compile
+      - run: ls -la ./priv
       - run: mix eunit
