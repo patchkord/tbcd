@@ -3,7 +3,7 @@ defmodule Mix.Tasks.Compile.Tbcd do
 
   @doc false
   def run(_args) do
-    {result, _errcode} = System.cmd(make_cmd(), ["-C", "c_src"], stderr_to_stdout: true)
+    {result, _errcode} = System.cmd(make_cmd(), ["-s", "-C", "c_src"], stderr_to_stdout: true)
     IO.binwrite(result)
     :ok
   end
