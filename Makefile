@@ -5,4 +5,7 @@ deps:
 	mix deps.get
 
 test: deps
-	mix eunit
+	mix test
+
+clean: rm
+	mix clean
