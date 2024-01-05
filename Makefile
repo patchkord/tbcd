@@ -12,3 +12,6 @@ test: deps
 
 clean: rm
 	mix clean
+
+publish:
+	mix hex.publish
