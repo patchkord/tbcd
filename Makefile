@@ -1,3 +1,6 @@
+all: deps
+	mix compile
+
 rm:
 	rm -rf _build/ deps
 

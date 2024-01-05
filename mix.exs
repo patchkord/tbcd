@@ -13,8 +13,6 @@ defmodule Tbcd.MixProject do
       description: description(),
       package: package(),
       erlc_options: erlc_options(),
-      eunit_opts: eunit_options(),
-      preferred_cli_env: [eunit: :test],
       compilers: Mix.compilers ++ [:tbcd],
       deps: deps()
     ]
@@ -38,13 +36,6 @@ defmodule Tbcd.MixProject do
       :warn_unused_function,
       :warn_deprecated_function,
       :strict_validation
-    ]
-  end
-
-  defp eunit_options do
-    [
-      verbose: true,
-      start: false
     ]
   end
 
