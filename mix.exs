@@ -6,7 +6,7 @@ defmodule Tbcd.MixProject do
   def project() do
     [
       app: :tbcd,
-      version: "0.3.5",
+      version: "0.3.6",
       elixir: "~> 1.0",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
