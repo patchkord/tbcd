@@ -6,15 +6,13 @@ defmodule Tbcd.MixProject do
   def project() do
     [
       app: :tbcd,
-      version: "0.3.4",
+      version: "0.3.5",
       elixir: "~> 1.0",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       description: description(),
       package: package(),
       erlc_options: erlc_options(),
-      eunit_opts: eunit_options(),
-      preferred_cli_env: [eunit: :test],
       compilers: Mix.compilers ++ [:tbcd],
       deps: deps()
     ]
@@ -38,13 +36,6 @@ defmodule Tbcd.MixProject do
       :warn_unused_function,
       :warn_deprecated_function,
       :strict_validation
-    ]
-  end
-
-  defp eunit_options do
-    [
-      verbose: true,
-      start: false
     ]
   end
 
